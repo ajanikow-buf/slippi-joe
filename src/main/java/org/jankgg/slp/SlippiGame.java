@@ -11,10 +11,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jankgg.slp.events.GameStartEvent;
-import org.jankgg.slp.events.PayloadEvent;
-import org.jankgg.slp.events.PostFrameUpdateEvent;
-import org.jankgg.slp.events.PreFrameUpdateEvent;
+import org.jankgg.slp.events.*;
 import org.jankgg.slp.exception.SlippiParsingException;
 import org.jankgg.slp.util.SlippiByteBuffer;
 
@@ -25,6 +22,7 @@ public class SlippiGame {
   private SlippiMetadata metadata;
   private PayloadEvent eventPayloads;
   private GameStartEvent gameStartEvent;
+  private GameEndEvent gameEndEvent;
   private List<PreFrameUpdateEvent> preFrameUpdateEvents = new ArrayList<>();
   private List<PostFrameUpdateEvent> postFrameUpdateEvents = new ArrayList<>();
 
@@ -80,6 +78,13 @@ public class SlippiGame {
           gameStartEvent = new GameStartEvent(rawBuffer, cmdSize);
         } else {
           throw new SlippiParsingException("Multiple game start events encountered, only one event of this type expected");
+        }
+      }
+      else if (cmdByte == GameEndEvent.code) {
+        if (gameEndEvent == null) {
+          gameEndEvent = new GameEndEvent(rawBuffer, cmdSize);
+        } else {
+          throw new SlippiParsingException("Multiple game end events encountered, only one event of this type expected");
         }
       }
       else if (cmdByte == PreFrameUpdateEvent.code) {
