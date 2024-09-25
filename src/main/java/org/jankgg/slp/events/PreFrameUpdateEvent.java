@@ -138,4 +138,30 @@ public class PreFrameUpdateEvent {
 		//we're missing 2 bytes for some reason so just fix for now, no time to debug wooo
 		buffer.position(startPosition + cmdSize);
 	}
+
+	@Override
+	public String toString() {
+		return "PreFrameUpdateEvent{" +
+				"frameNumber=" + frameNumber +
+				", playerIndex=" + playerIndex +
+				", isFollower=" + isFollower +
+				", randomSeed=" + randomSeed +
+				", actionStateId=" + actionStateId +
+				", xPosition=" + xPosition +
+				", yPosition=" + yPosition +
+				", facingDirection=" + facingDirection +
+				", joystickX=" + joystickX +
+				", joystickY=" + joystickY +
+				", cstickX=" + cstickX +
+				", cstickY=" + cstickY +
+				", trigger=" + trigger +
+				", processedButtons=" + processedButtons +
+				", physicalButtons=" + physicalButtons +
+				", physicalLTrigger=" + physicalLTrigger +
+				", physicalRTrigger=" + physicalRTrigger +
+				", xAnalog=" + xAnalog +
+				", percent=" + percent +
+				", yAnalog=" + yAnalog +
+				'}';
+	}
 }

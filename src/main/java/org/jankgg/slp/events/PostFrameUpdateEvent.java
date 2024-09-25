@@ -86,6 +86,7 @@ public class PostFrameUpdateEvent {
         System.out.println("Intended position:" + (startPosition + cmdSize));
         //we're missing 2 bytes for some reason so just fix for now, no time to debug wooo
         buffer.position(startPosition + cmdSize);
+        System.out.println(toString());
     }
 
     public int getFrameNumber() {
@@ -226,5 +227,46 @@ public class PostFrameUpdateEvent {
 
     public int getIndexId() {
         return indexId;
+    }
+
+    @Override
+    public String toString() {
+        return "PostFrameUpdateEvent{" +
+                "frameNumber=" + frameNumber +
+                ", playerIndex=" + playerIndex +
+                ", isFollower=" + isFollower +
+                ", internalCharacterId=" + internalCharacterId +
+                ", actionStateId=" + actionStateId +
+                ", xPosition=" + xPosition +
+                ", yPosition=" + yPosition +
+                ", facingDirection=" + facingDirection +
+                ", percent=" + percent +
+                ", shieldSize=" + shieldSize +
+                ", lastHittingAttackId=" + lastHittingAttackId +
+                ", currentComboCount=" + currentComboCount +
+                ", lastHitByPlayer=" + lastHitByPlayer +
+                ", stocksRemaining=" + stocksRemaining +
+                ", actionStateFrameCounter=" + actionStateFrameCounter +
+                ", stageBitFlags1=" + stageBitFlags1 +
+                ", stageBitFlags2=" + stageBitFlags2 +
+                ", stageBitFlags3=" + stageBitFlags3 +
+                ", stageBitFlags4=" + stageBitFlags4 +
+                ", stageBitFlags5=" + stageBitFlags5 +
+                ", hitStunRemaining=" + hitStunRemaining +
+                ", grounded=" + grounded +
+                ", lastGroundId=" + lastGroundId +
+                ", jumpsRemaining=" + jumpsRemaining +
+                ", lCancelStatus=" + lCancelStatus +
+                ", hurtboxCollisionState=" + hurtboxCollisionState +
+                ", selfInducedAirSpeedX=" + selfInducedAirSpeedX +
+                ", selfInducedSpeedY=" + selfInducedSpeedY +
+                ", attackBasedXSpeed=" + attackBasedXSpeed +
+                ", attackBasedYSpeed=" + attackBasedYSpeed +
+                ", selfInducedGroundSpeedX=" + selfInducedGroundSpeedX +
+                ", hitlagFramesRemaining=" + hitlagFramesRemaining +
+                ", animationIndex=" + animationIndex +
+                ", instanceHitBy=" + instanceHitBy +
+                ", indexId=" + indexId +
+                '}';
     }
 }
