@@ -74,7 +74,6 @@ public class SlippiJoe {
 				} catch (IOException e) {
 					System.out.println("Failed to parse file: " + f.getAbsolutePath());
 					try {
-            Files.move(f.toPath(), new File("C:/bad_slippi/" + f.getName()).toPath(), StandardCopyOption.REPLACE_EXISTING);
           } catch (IOException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
