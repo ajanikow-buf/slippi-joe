@@ -26,6 +26,7 @@ public class SlippiGame {
   private PayloadEvent eventPayloads;
   private GameStartEvent gameStartEvent;
   private List<PreFrameUpdateEvent> preFrameUpdateEvents = new ArrayList<>();
+  private List<PostFrameUpdateEvent> postFrameUpdateEvents = new ArrayList<>();
 
 
 
@@ -87,7 +88,8 @@ public class SlippiGame {
         preFrameUpdateEvents.add(preFrameEvent);
       }
       else if (cmdByte == PostFrameUpdateEvent.code) {
-        rawBuffer.skip(cmdSize);
+        PostFrameUpdateEvent postFrameEvent = new PostFrameUpdateEvent(rawBuffer, cmdSize);
+        postFrameUpdateEvents.add(postFrameEvent);
       }
       else {
         rawBuffer.skip(cmdSize);

@@ -70,6 +70,7 @@ public class SlippiJoe {
 					System.out.println("Teams: " + game.getGameStartEvent().getGameInfoBlock().isTeams());
 					System.out.println("Online: " + game.getGameStartEvent().isOnline());
 					System.out.println("Number of preframe events:" + game.getPreFrameUpdateEvents().size());
+					System.out.println("Number of postframe events:" + game.getPreFrameUpdateEvents().size());
 
 					games.add(game);
 				} catch (IOException e) {
