@@ -8,9 +8,13 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jankgg.slp.events.GameStartEvent;
 import org.jankgg.slp.events.PayloadEvent;
+import org.jankgg.slp.events.PostFrameUpdateEvent;
+import org.jankgg.slp.events.PreFrameUpdateEvent;
 import org.jankgg.slp.exception.SlippiParsingException;
 import org.jankgg.slp.util.SlippiByteBuffer;
 
@@ -21,6 +25,9 @@ public class SlippiGame {
   private SlippiMetadata metadata;
   private PayloadEvent eventPayloads;
   private GameStartEvent gameStartEvent;
+  private List<PreFrameUpdateEvent> preFrameUpdateEvents = new ArrayList<>();
+
+
 
   public SlippiGame(File file) throws IOException {
     UBReader ubReader = null;
@@ -74,6 +81,14 @@ public class SlippiGame {
           throw new SlippiParsingException("Multiple game start events encountered, only one event of this type expected");
         }
       }
+      else if (cmdByte == PreFrameUpdateEvent.code) {
+        //noop for now but will be useful for comparing inputs to game state to find common misinputs and such
+        PreFrameUpdateEvent preFrameEvent = new PreFrameUpdateEvent(rawBuffer, cmdSize);
+        preFrameUpdateEvents.add(preFrameEvent);
+      }
+      else if (cmdByte == PostFrameUpdateEvent.code) {
+        rawBuffer.skip(cmdSize);
+      }
       else {
         rawBuffer.skip(cmdSize);
       }
@@ -100,4 +115,8 @@ public class SlippiGame {
   public GameStartEvent getGameStartEvent() {
     return gameStartEvent;
   }
+  public List<PreFrameUpdateEvent> getPreFrameUpdateEvents() {
+    return preFrameUpdateEvents;
+  }
+
 }

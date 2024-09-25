@@ -49,8 +49,7 @@ public enum MeleeStage {
     public int getNum() {
         return num;
     }
-    
-    //shout out to my main man Joshua Block, dopest design patterns on the mo'fuckin planet
+
     static {
         Map<Integer, MeleeStage> map = new HashMap<Integer, MeleeStage>();
         for (MeleeStage instance : MeleeStage.values()) {

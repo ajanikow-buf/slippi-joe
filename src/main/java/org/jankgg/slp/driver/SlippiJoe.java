@@ -20,7 +20,7 @@ import org.apache.commons.cli.ParseException;
 import org.jankgg.slp.SlippiGame;
 
 /**
- * The dopest (and only) java slippi replay parser around
+ * The best (and only) java slippi replay parser around
  *
  */
 public class SlippiJoe {
@@ -69,12 +69,13 @@ public class SlippiJoe {
 					System.out.println("Stage: " + game.getGameStartEvent().getGameInfoBlock().getStage().toString());
 					System.out.println("Teams: " + game.getGameStartEvent().getGameInfoBlock().isTeams());
 					System.out.println("Online: " + game.getGameStartEvent().isOnline());
+					System.out.println("Number of preframe events:" + game.getPreFrameUpdateEvents().size());
 
 					games.add(game);
 				} catch (IOException e) {
 					System.out.println("Failed to parse file: " + f.getAbsolutePath());
 					try {
-          } catch (IOException e1) {
+          } catch (Exception e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
           }
